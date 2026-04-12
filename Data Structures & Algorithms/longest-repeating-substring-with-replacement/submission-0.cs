@@ -1,0 +1,26 @@
+public class Solution {
+    public int CharacterReplacement(string s, int k) {
+        int res = 0;
+        var set = new HashSet<char>(s);
+
+        foreach(var c in set){
+            int l = 0,
+                count = 0;
+                
+            for(int r = 0; r < s.Length; ++r){
+                if(s[r] == c)
+                    ++count;
+                
+                while((r - l + 1) - count > k){
+                    if(s[l] == c)
+                        --count;
+                    ++l;
+                }
+
+                res = Math.Max(r - l + 1, res);
+            }
+        }
+
+        return res;
+    }
+}

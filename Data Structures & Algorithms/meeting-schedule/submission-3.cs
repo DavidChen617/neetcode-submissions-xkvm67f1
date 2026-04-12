@@ -1,0 +1,28 @@
+/**
+ * Definition of Interval:
+ * public class Interval {
+ *     public int start, end;
+ *     public Interval(int start, int end) {
+ *         this.start = start;
+ *         this.end = end;
+ *     }
+ * }
+ */
+
+public class Solution {
+    public bool CanAttendMeetings(List<Interval> intervals) {
+        int n = intervals.Count;
+        for (int i = 0; i < n; i++)
+        {
+            var A = intervals[i];
+            for (int j = i + 1; j < n; j++)
+            {
+                var B = intervals[j];
+                if(Math.Min(A.end, B.end) > Math.Max(A.start, B.start))
+                    return false;
+            }
+        }
+        
+        return true;
+    }
+}
